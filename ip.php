@@ -6,5 +6,4 @@ if (array_key_exists('HTTP_X_FORWARDED_FOR', $_SERVER)) {
   $ip = prev($a);
 }
 echo $ip;
-echo $_SERVER['HTTP_X_FORWARDED_FOR'];
 ?>
