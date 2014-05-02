@@ -9,5 +9,5 @@ if ($shards == NULL)
 
 header('Content-Type: application/json');
 header('Vary: Accept-Encoding');
-echo json_encode(iterator_to_array($shards), JSON_PRETTY_PRINT);
+echo json_encode(iterator_to_array($shards));
 ?>
