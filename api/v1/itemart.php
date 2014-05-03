@@ -55,11 +55,11 @@ if (isset($hue)) {
 				$g = ($c >> 8) & 0xFF;
 				$b = ($c) & 0xFF;
 $scale = 31.0 / 255;
-$red = intval(floor($r * $scale))&0x1F;
+$red = intval(ceil($r * $scale))&0x1F;
 if ($red == 0 && $r != 0) $red = 1;
-$green = intval(floor($g * $scale))&0x1F;
+$green = intval(ceil($g * $scale))&0x1F;
 if ($green == 0 && $g != 0) $green = 1;
-$blue = intval(floor($b * $scale))&0x1F;
+$blue = intval(ceil($b * $scale))&0x1F;
 if ($blue == 0 && $b != 0) $blue = 1;
 
 				if ($red == $green && $red == $blue) {
