@@ -55,13 +55,15 @@ if (isset($hue)) {
 				}
 			}
 		}
-
-		$png = imagepng($img);
 	}
 }
 
 header('Vary: Accept-Encoding');
 header('Content-Type: image/png');
 header("Content-Disposition: filename=itemart-$id.png");
-echo $png;
+
+if ($img)
+	imagepng($img);
+else
+	echo $png;
 ?>
