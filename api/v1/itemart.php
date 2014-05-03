@@ -50,7 +50,7 @@ if (isset($hue)) {
 				$g = ($c >> 8) & 0x1F;
 				$b = ($c) & 0x1F;
 
-				if ($r == $g && $r == $b) {
+				if (true || $r == $g && $r == $b) {
 					$color = $colors[$r];
 
 					imagesetpixel($img, $i, $j, $color);
