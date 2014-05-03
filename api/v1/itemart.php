@@ -53,8 +53,7 @@ if (isset($hue)) {
 				if ($r == $g && $r == $b) {
 					$color = $colors[$r];
 
-					$col = imagecolorallocate($img, $color);
-					imagesetpixel($img, $i, $j, $col);
+					imagesetpixel($img, $i, $j, $color);
 				}
 			}
 		}
