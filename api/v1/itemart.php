@@ -46,17 +46,21 @@ if (isset($hue)) {
 			for($j = 0; $j < $y; $j++) {
 				$c = imagecolorat($img, $i, $j);
 
-				if (!($c & 0xFF000000))
+				if ($c & 0xFF000000)
 					continue;
 
 				$c = $c & 0xFFFFFF;
 
-				$r = ($c >> 16) & 0x1F;
-				$g = ($c >> 8) & 0x1F;
-				$b = ($c) & 0x1F;
+				$r = ($c >> 16) & 0xFF;
+				$g = ($c >> 8) & 0xFF;
+				$b = ($c) & 0xFF;
+$scale = 31.0 / 255;
+$red = intval($r * scale)&0x1F;
+$green = intval($g * scale)&0x1F;
+$blue = intval($b * scale)&0x1F;;
 
-				if ($r == $g && $r == $b) {
-					$color = $colors[$r];
+				if ($red == $green && $red == $blue) {
+					$color = $colors[$red];
 					$col = imagecolorallocate($img, ($color >> 16) & 0xFF, ($color >> 8) & 0xFF, $color & 0xFF);
 					imagesetpixel($img, $i, $j, $col);
 				}
