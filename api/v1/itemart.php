@@ -19,5 +19,5 @@ $data = $c->find(['_id' => $n],['_id' => false])->getNext()['png'];
 header('Vary: Accept-Encoding');
 header('Content-Type: image/png');
 header("Content-Disposition: filename=itemart-$id.png");
-echo $data;
+echo $data->bin;
 ?>
