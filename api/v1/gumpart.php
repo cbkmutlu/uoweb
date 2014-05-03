@@ -6,7 +6,7 @@ if (!array_key_exists('n', $_REQ))
 
 $n = preg_replace('/\D/', '', $_REQ['n']);
 
-if (!$n)
+if (!strlen($n))
 	return;
 
 $n = intval($n);
