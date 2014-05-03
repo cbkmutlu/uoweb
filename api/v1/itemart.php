@@ -1,6 +1,9 @@
 <?php
 include_once 'inc/config.php';
 
+//$_REQ['id'] = 7939;
+//$_REQ['hue'] = 2;
+
 if (!array_key_exists('id', $_REQ))
 	return;
 
@@ -32,7 +35,7 @@ if (!$png)
 
 if (isset($hue)) {
 	$c = $md->hues;
-	$colors = $c->find(['_id' => $hue], ['_id' => false, 'colors' => true])->getNext()['rgb'];
+	$colors = $c->find(['_id' => $hue], ['_id' => false, 'rgb' => true])->getNext()['rgb'];
 	if ($colors) {
 		$img = imagecreatefromstring($png);
 
@@ -52,9 +55,8 @@ if (isset($hue)) {
 
 				if ($r == $g && $r == $b) {
 					$color = $colors[$r];
-					$col = imagecolorallocate($img, ($color >> 16) & 0xFF, ($color >> 8) & 0xFF, $color & 0xFF);
-
-					imagesetpixel($img, $i, $j, $col);
+					//$col = imagecolorallocate($img, ($color >> 16) & 0xFF, ($color >> 8) & 0xFF, $color & 0xFF);
+					imagesetpixel($img, $i, $j, $color);
 				}
 			}
 		}
