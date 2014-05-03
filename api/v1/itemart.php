@@ -46,8 +46,8 @@ if (isset($hue)) {
 			for($j = 0; $j < $y; $j++) {
 				$c = imagecolorat($img, $i, $j);
 
-				if ($c & 0xFF000000)
-					continue;
+				//if ($c & 0xFF000000)
+				//	continue;
 
 				$c = $c & 0xFFFFFF;
 
@@ -64,7 +64,7 @@ if ($blue == 0 && $b != 0) $blue = 1;*/
 
 $red = $r; $green = $g; $blue = $b;
 				if ($red == $green && $red == $blue) {
-					$idx = intval(floor($red * 31 / 255));
+					$idx = intval(round($red * 31 / 255));
 					$color = $colors[$idx];
 					$col = imagecolorallocate($img, ($color >> 16) & 0xFF, ($color >> 8) & 0xFF, $color & 0xFF);
 					imagesetpixel($img, $i, $j, $col);
