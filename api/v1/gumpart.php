@@ -1,20 +1,20 @@
 <?php
 include_once 'inc/config.php';
 
-if (!array_key_exists('n', $_REQ))
+if (!array_key_exists('id', $_REQ))
 	return;
 
-$n = preg_replace('/\D/', '', $_REQ['n']);
+$id = preg_replace('/\D/', '', $_REQ['id']);
 
-if (!strlen($n))
+if (!strlen($id))
 	return;
 
-$n = intval($n);
+$id = intval($id);
 
 include_once 'inc/mongo.php';
 
 $c = $md->gumpart;
-$data = $c->find(['_id' => $n],['_id' => false])->getNext()['png'];
+$data = $c->find(['_id' => $id],['_id' => false])->getNext()['png'];
 
 header('Vary: Accept-Encoding');
 header('Content-Type: image/png');

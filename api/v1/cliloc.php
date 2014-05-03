@@ -1,20 +1,20 @@
 <?php
 include_once 'inc/config.php';
 
-if (!array_key_exists('n', $_REQ))
+if (!array_key_exists('id', $_REQ))
 	return;
 
-$n = preg_replace('/\D/', '', $_REQ['n']);
+$id = preg_replace('/\D/', '', $_REQ['id']);
 
-if (!$n)
+if (!$id)
 	return;
 
-$n = intval($n);
+$id = intval($id);
 
 include_once 'inc/mongo.php';
 
 $c = $md->cliloc_enu;
-$data = $c->find(['_id' => $n],['_id' => false])->getNext()['text'];
+$data = $c->find(['_id' => $id],['_id' => false])->getNext()['text'];
 
 header('Vary: Accept-Encoding');
 echo $data;
