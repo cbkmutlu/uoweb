@@ -38,7 +38,7 @@ if (isset($hue)) {
 	$colors = $c->find(['_id' => $hue], ['_id' => false, 'rgb' => true])->getNext()['rgb'];
 	if ($colors) {
 		$img = imagecreatefromstring($png);
-		imagesavealpha($img);
+		imagesavealpha($img, true);
 		$x = imagesx($img);
 		$y = imagesy($img);
 
@@ -56,8 +56,11 @@ if (isset($hue)) {
 				$b = ($c) & 0xFF;
 $scale = 31.0 / 255;
 $red = intval($r * scale)&0x1F;
+if ($red == 0 && $r != 0) $red = 1;
 $green = intval($g * scale)&0x1F;
-$blue = intval($b * scale)&0x1F;;
+if ($green == 0 && $g != 0) $green = 1;
+$blue = intval($b * scale)&0x1F;
+if ($blue == 0 && $b != 0) $blue = 1;
 
 				if ($red == $green && $red == $blue) {
 					$color = $colors[$red];
