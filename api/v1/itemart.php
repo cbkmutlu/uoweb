@@ -13,8 +13,8 @@ $n = intval($n);
 
 include_once 'inc/mongo.php';
 
-$c = $md->itemart;
-$data = $c->find(['_id' => $n],['_id' => false])->getNext()['png'];
+$c = $md->itemdata;
+$data = $c->find(['_id' => $n],['_id' => false, 'png' => true])->getNext()['png'];
 
 header('Vary: Accept-Encoding');
 header('Content-Type: image/png');
