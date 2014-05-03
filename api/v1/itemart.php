@@ -50,10 +50,11 @@ if (isset($hue)) {
 				$g = ($c >> 8) & 0x1F;
 				$b = ($c) & 0x1F;
 
-				if (true || $r == $g && $r == $b) {
+				if ($r == $g && $r == $b) {
 					$color = $colors[$r];
+					$col = imagecolorallocate($img, ($color >> 16) & 0xFF, ($color >> 8) & 0xFF, $color & 0xFF);
 
-					imagesetpixel($img, $i, $j, $color);
+					imagesetpixel($img, $i, $j, $col);
 				}
 			}
 		}
