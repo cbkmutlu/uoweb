@@ -42,7 +42,8 @@ if (isset($hue)) {
 		for($i = 0; $i < $x; $i++) {
 			for($j = 0; $j < $y; $j++) {
 				$c = imagecolorat($img, $i, $j);
-
+				echo "c is $c";
+				return;
 				if (!$c || $c == 0xFFFFFF)
 					continue;
 
