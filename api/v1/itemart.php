@@ -38,7 +38,7 @@ if (isset($hue)) {
 	$colors = $c->find(['_id' => $hue], ['_id' => false, 'rgb' => true])->getNext()['rgb'];
 	if ($colors) {
 		$img = imagecreatefromstring($png);
-
+		imagesavealpha($img);
 		$x = imagesx($img);
 		$y = imagesy($img);
 
@@ -46,7 +46,7 @@ if (isset($hue)) {
 			for($j = 0; $j < $y; $j++) {
 				$c = imagecolorat($img, $i, $j);
 
-				if (!$c)
+				if (!($c & 0xFF000000))
 					continue;
 
 				$c = $c & 0xFFFFFF;
