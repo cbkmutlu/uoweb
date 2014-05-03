@@ -46,7 +46,7 @@ if (isset($hue)) {
 			for($j = 0; $j < $y; $j++) {
 				$c = imagecolorat($img, $i, $j);
 
-				if (!($c & 0xFFFFFF))
+				if ($c & 0xFF000000)
 					continue;
 
 				$r = ($c >> 16) & 0x1F;
