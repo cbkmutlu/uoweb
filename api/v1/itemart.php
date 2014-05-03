@@ -32,7 +32,7 @@ if (!$png)
 
 if (isset($hue)) {
 	$c = $md->hues;
-	$colors = $c->find(['_id' => $hue], ['_id' => false, 'colors' => true])->getNext()['colors'];
+	$colors = $c->find(['_id' => $hue], ['_id' => false, 'colors' => true])->getNext()['rgb'];
 	if ($colors) {
 		$img = imagecreatefromstring($png);
 
@@ -53,8 +53,7 @@ if (isset($hue)) {
 				if ($r == $g && $r == $b) {
 					$color = $colors[$r];
 
-					//$col = imagecolorallocate($img, $color >> 10, $color >> 5, $color);
-					$col = imagecolorallocate($img, 255, 0, 0);
+					$col = imagecolorallocate($img, $color);
 					imagesetpixel($img, $i, $j, $col);
 				}
 			}
