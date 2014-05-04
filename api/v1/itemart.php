@@ -5,11 +5,7 @@ if (!array_key_exists('id', $_REQ))
 	return;
 
 
-$id = $_REQ['id'];
-if (substr($id, 2) == '0x')
-	$id = intval(hexdec($id));
-else
-	$id = intval($id);
+$id = intval($_REQ['id']);
 
 if (!is_numeric($id) || $id < 0 || $id > 65535)
 	return;
@@ -18,11 +14,7 @@ $key = "itemart-$id";
 $id = intval($id);
 
 if (array_key_exists('hue', $_REQ)) {
-	$hue = $_REQ['hue'];
-	if (substr($hue, 2) == '0x')
-		$hue = intval(hexdec($hue));
-	else
-		$hue = intval($hue);
+	$hue = intval($_REQ['hue']);
 
 	if (is_numeric($hue) && hue > 0 && hue <= 3000) {
 		$key .= "-$hue";
@@ -112,6 +104,6 @@ header('Access-Control-Allow-Origin: *');
 header('Cache-Control: public, max-age=3600');
 header('Vary: Accept-Encoding');
 header('Content-Type: image/png');
-header("Content-Disposition: filename=itemart-$key.png");
+header("Content-Disposition: filename=$key.png");
 echo $png;
 ?>
