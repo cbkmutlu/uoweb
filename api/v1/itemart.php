@@ -9,7 +9,7 @@ $id = preg_replace('/\D/', '', $_REQ['id']);
 if (!strlen($id))
 	return;
 
-$key = $id;
+$key = "itemart-$id";
 $id = intval($id);
 
 if (array_key_exists('hue', $_REQ)) {
