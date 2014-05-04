@@ -4,12 +4,10 @@ include_once 'inc/config.php';
 if (!array_key_exists('id', $_REQ))
 	return;
 
-$id = preg_replace('/\D/', '', $_REQ['id']);
+$id = intval($_REQ['id'], 0);
 
-if (!$id)
+if (!is_numeric($id) || $id < 0)
 	return;
-
-$id = intval($id);
 
 include_once 'inc/mongo.php';
 

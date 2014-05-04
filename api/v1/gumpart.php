@@ -10,7 +10,6 @@ if (!is_numeric($id) || $id < 0 || $id > 65535)
 	return;
 
 $key = "gumpart-$id";
-$id = intval($id);
 
 if (array_key_exists('hue', $_REQ)) {
 	$hue = intval($_REQ['hue'], 0);
