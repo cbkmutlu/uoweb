@@ -1,9 +1,6 @@
 <?php
 include_once 'inc/config.php';
 
-//$_REQ['id'] = 7939;
-//$_REQ['hue'] = 2;
-
 if (!array_key_exists('id', $_REQ))
 	return;
 
@@ -54,16 +51,21 @@ if (isset($hue)) {
 				$r = ($c >> 16) & 0xFF;
 				$g = ($c >> 8) & 0xFF;
 				$b = ($c) & 0xFF;
-$scale = 31.0 / 255;
-$red = intval(floor($r * $scale))&0x1F;
-if ($red == 0 && $r != 0) $red = 1;
-$green = intval(floor($g * $scale))&0x1F;
-if ($green == 0 && $g != 0) $green = 1;
-$blue = intval(floor($b * $scale))&0x1F;
-if ($blue == 0 && $b != 0) $blue = 1;
 
-				if ($red == $green && $red == $blue) {
+				$scale = 31.0 / 255;
+				$red = intval(floor($r * $scale))&0x1F;
+				if ($red == 0 && $r != 0) $red = 1;
+				$green = intval(floor($g * $scale))&0x1F;
+				if ($green == 0 && $g != 0) $green = 1;
+				$blue = intval(floor($b * $scale))&0x1F;
+				if ($blue == 0 && $b != 0) $blue = 1;
+
+				if ($red == $green || $red == $blue)
 					$idx = $red;
+				if ($green == $blue)
+					$idx = $blue;
+
+				if (isset($idx)) {
 					$color = $colors[$idx];
 					$col = imagecolorallocate($img, ($color >> 16) & 0xFF, ($color >> 8) & 0xFF, $color & 0xFF);
 					imagesetpixel($img, $i, $j, $col);
