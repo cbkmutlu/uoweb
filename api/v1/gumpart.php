@@ -71,6 +71,7 @@ if (isset($hue)) {
 	}
 }
 
+header('Access-Control-Allow-Origin: *');
 header('Vary: Accept-Encoding');
 header('Content-Type: image/png');
 header("Content-Disposition: filename=gumpart-$id.png");
