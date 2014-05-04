@@ -60,14 +60,13 @@ if (isset($hue)) {
 				$blue = intval(floor($b * $scale))&0x1F;
 				if ($blue == 0 && $b != 0) $blue = 1;
 
-				/*if ($red == $green || $red == $blue)
+				if ($red == $green || $red == $blue)
 					$idx = $red;
 				if ($green == $blue)
 					$idx = $blue;
 
-				if (isset($idx)) {*/
-				if ($red == $green && $red == $blue) {
-					$color = $colors[$red];
+				if (isset($idx)) {
+					$color = $colors[$idx];
 					$col = imagecolorallocate($img, ($color >> 16) & 0xFF, ($color >> 8) & 0xFF, $color & 0xFF);
 					imagesetpixel($img, $i, $j, $col);
 				}
