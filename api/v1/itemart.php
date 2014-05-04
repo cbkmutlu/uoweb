@@ -4,18 +4,30 @@ include_once 'inc/config.php';
 if (!array_key_exists('id', $_REQ))
 	return;
 
-$id = preg_replace('/\D/', '', $_REQ['id']);
 
-if (!strlen($id))
+$id = $_REQ['id'];
+if (substr($id, 2) == '0x')
+	$id = intval(hexdec($id));
+else
+	$id = intval($id);
+
+if (!is_numeric($id) || $id < 0 || $id > 65535)
 	return;
 
 $key = "itemart-$id";
 $id = intval($id);
 
 if (array_key_exists('hue', $_REQ)) {
-	$hue = intval(preg_replace('/\D/', '', $_REQ['hue']));
-	if ($hue) {
+	$hue = $_REQ['hue'];
+	if (substr($hue, 2) == '0x')
+		$hue = intval(hexdec($hue));
+	else
+		$hue = intval($hue);
+
+	if (is_numeric($hue) && hue > 0 && hue <= 3000) {
 		$key .= "-$hue";
+	} else {
+		unset($hue);
 	}
 }
 
