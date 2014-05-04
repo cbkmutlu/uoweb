@@ -72,7 +72,7 @@ if (isset($hue)) {
 }
 
 header('Access-Control-Allow-Origin: *');
-header('Cache-Control: max-age=3600');
+header('Cache-Control: public, max-age=3600');
 header('Vary: Accept-Encoding');
 header('Content-Type: image/png');
 header("Content-Disposition: filename=gumpart-$id.png");
