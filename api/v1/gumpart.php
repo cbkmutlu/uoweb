@@ -67,7 +67,7 @@ if (isset($hue)) {
 
 				if (isset($idx)) {*/
 				if ($red == $green && $red == $blue) {
-					$color = $colors[$idx];
+					$color = $colors[$red];
 					$col = imagecolorallocate($img, ($color >> 16) & 0xFF, ($color >> 8) & 0xFF, $color & 0xFF);
 					imagesetpixel($img, $i, $j, $col);
 				}
