@@ -16,7 +16,7 @@ $id = intval($id);
 if (array_key_exists('hue', $_REQ)) {
 	$hue = intval($_REQ['hue']);
 
-	if (is_numeric($hue) && hue > 0 && hue <= 3000) {
+	if (is_numeric($hue) && $hue > 0 && $hue <= 3000) {
 		$key .= "-$hue";
 	} else {
 		unset($hue);
