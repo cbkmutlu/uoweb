@@ -86,7 +86,7 @@ if (!$png) {
 			ob_start();
 			imagepng($img);
 			$png = ob_get_contents();
-			ob_end_flush();
+			ob_end_clean();
 			$rd->set($key, $png);
 		} else {
 			$rd->set($key, $png);
@@ -100,6 +100,6 @@ header('Access-Control-Allow-Origin: *');
 header('Cache-Control: public, max-age=3600');
 header('Vary: Accept-Encoding');
 header('Content-Type: image/png');
-header("Content-Disposition: filename=itemart-$id.png");
+header("Content-Disposition: filename=itemart-$key.png");
 echo $png;
 ?>
