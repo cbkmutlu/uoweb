@@ -4,8 +4,7 @@ include_once 'inc/config.php';
 if (!array_key_exists('id', $_REQ))
 	return;
 
-
-$id = intval($_REQ['id']);
+$id = intval($_REQ['id'], 0);
 
 if (!is_numeric($id) || $id < 0 || $id > 65535)
 	return;
@@ -14,7 +13,7 @@ $key = "itemart-$id";
 $id = intval($id);
 
 if (array_key_exists('hue', $_REQ)) {
-	$hue = intval($_REQ['hue']);
+	$hue = intval($_REQ['hue'], 0);
 
 	if (is_numeric($hue) && $hue > 0 && $hue <= 3000) {
 		$key .= "-$hue";
