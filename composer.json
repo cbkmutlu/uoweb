@@ -1,5 +1,10 @@
 {
 	"require": {
 		"ext-mongo": "*"
+	},
+	"extra": {
+		"heroku": {
+			"nginx-includes": ["etc/nginx.conf"]
+		}
 	}
 }
