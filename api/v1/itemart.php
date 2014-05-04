@@ -52,13 +52,9 @@ if (isset($hue)) {
 				$g = ($c >> 8) & 0xFF;
 				$b = ($c) & 0xFF;
 
-				$scale = 31.0 / 255;
-				$red = intval(floor($r * $scale))&0x1F;
-				if ($red == 0 && $r != 0) $red = 1;
-				$green = intval(floor($g * $scale))&0x1F;
-				if ($green == 0 && $g != 0) $green = 1;
-				$blue = intval(floor($b * $scale))&0x1F;
-				if ($blue == 0 && $b != 0) $blue = 1;
+				$red = ($r * 249 + 1014) >> 11;
+				$green = ($g * 249 + 1014) >> 11;
+				$blue = ($b * 249 + 1014) >> 11;
 
 				if ($red == $green || $red == $blue)
 					$idx = $red;
