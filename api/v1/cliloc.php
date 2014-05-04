@@ -17,6 +17,7 @@ $c = $md->cliloc_enu;
 $data = $c->find(['_id' => $id],['_id' => false])->getNext()['text'];
 
 header('Access-Control-Allow-Origin: *');
+header('Cache-Control: max-age=3600');
 header('Vary: Accept-Encoding');
 echo $data;
 ?>
