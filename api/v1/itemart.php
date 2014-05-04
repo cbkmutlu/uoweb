@@ -48,7 +48,8 @@ if (isset($hue)) {
 
 				$c = $c & 0xFFFFFF;
 
-				$r = ($c >> 16) & 0xFF;
+				// Selective
+				/*$r = ($c >> 16) & 0xFF;
 				$g = ($c >> 8) & 0xFF;
 				$b = ($c) & 0xFF;
 
@@ -56,17 +57,19 @@ if (isset($hue)) {
 				$green = ($g * 249 + 1014) >> 11;
 				$blue = ($b * 249 + 1014) >> 11;
 
+				// Normally R == G == B
 				if ($red == $green || $red == $blue)
 					$idx = $red;
 				if ($green == $blue)
 					$idx = $blue;
 
-				$idx = $red;
-				if (isset($idx)) {
+				if (isset($idx)) {*/
+					// Hue All
+					$idx = ((($c >> 16) & 0xFF) * 249 + 1014) >> 11;
 					$color = $colors[$idx];
 					//$col = imagecolorallocate($img, ($color >> 16) & 0xFF, ($color >> 8) & 0xFF, $color & 0xFF);
 					imagesetpixel($img, $i, $j, $color & 0xFFFFFF);
-				}
+				/*}*/
 			}
 		}
 	}
