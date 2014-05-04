@@ -67,8 +67,8 @@ if (isset($hue)) {
 
 				if (isset($idx)) {
 					$color = $colors[$idx];
-					$col = imagecolorallocate($img, ($color >> 16) & 0xFF, ($color >> 8) & 0xFF, $color & 0xFF);
-					imagesetpixel($img, $i, $j, $col);
+					//$col = imagecolorallocate($img, ($color >> 16) & 0xFF, ($color >> 8) & 0xFF, $color & 0xFF);
+					imagesetpixel($img, $i, $j, $color);
 				}
 			}
 		}
