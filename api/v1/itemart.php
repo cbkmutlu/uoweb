@@ -92,7 +92,7 @@ if (!$png) {
 			$rd->set($key, $png);
 		}
 	} else {
-		$rd->set($key, $png)
+		$rd->set($key, $png);
 	}
 }
 
