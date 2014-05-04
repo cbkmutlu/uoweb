@@ -77,7 +77,7 @@ if (isset($hue)) {
 
 header('Vary: Accept-Encoding');
 header('Content-Type: image/png');
-header("Content-Disposition: filename=itemart-$id.png");
+header("Content-Disposition: filename=gumpart-$id.png");
 
 if ($img)
 	imagepng($img);
