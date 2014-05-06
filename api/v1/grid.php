@@ -44,12 +44,7 @@ if (!$itemlist) {
 	$data->limit($count);
 
 	foreach($data as $ed) {
-                $dh = $ed['png_height'] + 25;
-                if ($dh < 75) $dh = 75;
-
-                $cur .= '<div class="item-entry" style="width: 250px; height: ';
-                $cur .= $dh;
-                $cur .= 'px;">';
+                $cur .= '<div class="item-entry">';
                 $cur .= '<div class="item-image">';
                 $cur .= '<img src="'.$url.$ed['_id'];
                 if ($e['hue'] > 0)
