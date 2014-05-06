@@ -37,7 +37,7 @@ if (!$itemlist) {
 	include_once 'inc/mongo.php';
 
 	$c = $md->itemdata;
-	$data = $c->find(['_id' => ['$gte' => $id]], ['png' => false];
+	$data = $c->find(['_id' => ['$gte' => $id]], ['png' => false]);
 	$data->sort(['_id' => 1]);
 	$data->limit($count);
 
