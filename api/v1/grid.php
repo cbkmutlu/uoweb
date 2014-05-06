@@ -44,8 +44,8 @@ if (!$itemlist) {
 	$data->limit($count);
 
 	foreach($data as $ed) {
-                $dh = $ed['png_height'] + 20;
-                if ($dh < 60) $dh = 60;
+                $dh = $ed['png_height'] + 75;
+                if ($dh < 75) $dh = 75;
 
                 $cur .= '<div style="float: left; width: 250px; height: ';
                 $cur .= $dh;
