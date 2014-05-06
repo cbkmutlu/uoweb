@@ -47,7 +47,7 @@ if (!$itemlist) {
                 $dh = $ed['png_height'] + 10;
                 if ($dh < 50) $dh = 50;
 
-                $cur .= '<div style="float: left; height: ';
+                $cur .= '<div style="float: left; width: 250px; height: ';
                 $cur .= $dh;
                 $cur .= 'px;">';
                 $cur .= '<div style="float: left; margin-top: 10px;">';
