@@ -41,7 +41,7 @@ if (!$itemlist) {
 	$data->sort(['_id' => 1]);
 	$data->limit($count);
 
-	$itemlist = json_encode(iterator_to_array($data));
+	$itemlist = json_encode(iterator_to_array($data, false));
 	$rd->set($key, $itemlist);
 }
 
