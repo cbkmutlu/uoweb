@@ -47,7 +47,7 @@ if (!$itemlist) {
                 $dh = $ed['png_height'] + 10;
                 if ($dh < 50) $dh = 50;
 
-                $cur .= '<div style="float: left; width: 330px; height: ';
+                $cur .= '<div style="float: left; height: ';
                 $cur .= $dh;
                 $cur .= 'px;">';
                 $cur .= '<div style="float: left; margin-top: 10px;">';
@@ -56,14 +56,14 @@ if (!$itemlist) {
                         $cur .= '/'.$ed['hue'];
                 $cur .= '" width="'.$ed['png_width'].'" height="'.$ed['png_height'].'" alt="'.$name." - ".$e['cost'].' ZP">';
                 $cur .= '</div>';
-                $cur .= '<div><strong>'.$ed['name'].'</strong></div>';
-                $cur .= '<div style="font-size: 80%; margin-top: -10px;"><strong>';
+                $cur .= '<div><strong>Name: '.$ed['name'].'</strong></div>';
+                $cur .= '<div style="font-size: 80%;"><strong>Weight: ';
                 $cur .= $ed['weight'];
                 $cur .= '</strong></div>';
-                $cur .= '<div style="font-size: 80%; margin-top: -10px;"><strong>';
+                $cur .= '<div style="font-size: 80%;"><strong>Flags: ';
                 $cur .= $ed['flags'];
                 $cur .= '</strong></div>';
-                $cur .= '<div style="font-size: 80%; margin-top: -10px;"><strong>';
+                $cur .= '<div style="font-size: 80%;"><strong>Height: ';
                 $cur .= $ed['height'];
                 $cur .= '</strong></div>';
                 $cur .= '</div>';
