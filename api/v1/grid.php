@@ -44,26 +44,26 @@ if (!$itemlist) {
 	$data->limit($count);
 
 	foreach($data as $ed) {
-                $dh = $ed['png_height'] + 75;
+                $dh = $ed['png_height'] + 25;
                 if ($dh < 75) $dh = 75;
 
-                $cur .= '<div style="float: left; width: 250px; height: ';
+                $cur .= '<div class="item-entry" style="width: 250px; height: ';
                 $cur .= $dh;
                 $cur .= 'px;">';
-                $cur .= '<div style="float: left; margin-top: 25px;">';
+                $cur .= '<div class="item-image">';
                 $cur .= '<img src="'.$url.$ed['_id'];
                 if ($e['hue'] > 0)
                         $cur .= '/'.$ed['hue'];
                 $cur .= '" width="'.$ed['png_width'].'" height="'.$ed['png_height'].'" alt="'.$name." - ".$e['cost'].' ZP">';
                 $cur .= '</div>';
-                $cur .= '<div><strong>Name: '.$ed['name'].'</strong></div>';
-                $cur .= '<div style="font-size: 80%;"><strong>Weight: ';
+                $cur .= '<div class="item-name"><strong>Name: '.$ed['name'].'</strong></div>';
+                $cur .= '<div class="item-weight" style="font-size: 80%;"><strong>Weight: ';
                 $cur .= $ed['weight'];
                 $cur .= '</strong></div>';
-                $cur .= '<div style="font-size: 80%;"><strong>Flags: ';
+                $cur .= '<div class="item-flags" style="font-size: 80%;"><strong>Flags: ';
                 $cur .= $ed['flags'];
                 $cur .= '</strong></div>';
-                $cur .= '<div style="font-size: 80%;"><strong>Height: ';
+                $cur .= '<div class="item-height" style="font-size: 80%;"><strong>Height: ';
                 $cur .= $ed['height'];
                 $cur .= '</strong></div>';
                 $cur .= '</div>';
