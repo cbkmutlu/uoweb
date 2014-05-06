@@ -44,14 +44,14 @@ if (!$itemlist) {
 	$data->limit($count);
 
 	foreach($data as $ed) {
-                $dh = $ed['png_height'] + 10;
-                if ($dh < 50) $dh = 50;
+                $dh = $ed['png_height'] + 20;
+                if ($dh < 60) $dh = 60;
 
                 $cur .= '<div style="float: left; width: 250px; height: ';
                 $cur .= $dh;
                 $cur .= 'px;">';
-                $cur .= '<div style="float: left; margin-top: 10px;">';
-                $cur .=  '<img src="'.$url.$ed['_id'];
+                $cur .= '<div style="float: left; margin-top: 25px;">';
+                $cur .= '<img src="'.$url.$ed['_id'];
                 if ($e['hue'] > 0)
                         $cur .= '/'.$ed['hue'];
                 $cur .= '" width="'.$ed['png_width'].'" height="'.$ed['png_height'].'" alt="'.$name." - ".$e['cost'].' ZP">';
