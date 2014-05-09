@@ -63,6 +63,8 @@ if (!$png) {
 
 					$c = $c & 0xFFFFFF;
 
+					$idx = -1;
+
 					if ($grayonly) {
 						// Selective
 						$r = ($c >> 16) & 0xFF;
@@ -79,7 +81,7 @@ if (!$png) {
 						$idx = ((($c >> 16) & 0xFF) * 249 + 1014) >> 11;
 					}
 
-					if (isset($idx)) {
+					if ($idx >= 0) {
 						$color = $colors[$idx];
 						//$col = imagecolorallocate($img, ($color >> 16) & 0xFF, ($color >> 8) & 0xFF, $color & 0xFF);
 						imagesetpixel($img, $i, $j, $color & 0xFFFFFF);
