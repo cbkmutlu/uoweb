@@ -35,9 +35,9 @@ if (!$png) {
 	include_once 'inc/mongo.php';
 
 	$c = $md->itemdata;
-	$data = $c->find(['_id' => $id], ['_id' => false, 'png' => true])->getNext()['png'];
+	$data = $c->find(['_id' => $id], ['_id' => false, 'flags' => true, 'png' => true])->getNext();
 
-	$png = $data->bin;
+	$png = $data['png']->bin;
 
 	if (!$png)
 		return;
@@ -46,6 +46,7 @@ if (!$png) {
 		$c = $md->hues;
 		$colors = $c->find(['_id' => $hue], ['_id' => false, 'rgb' => true])->getNext()['rgb'];
 		if ($colors) {
+			$partial = ($data['flags'] & 0x00040000) != 0;
 			$img = imagecreatefromstring($png);
 			imagesavealpha($img, true);
 			$x = imagesx($img);
@@ -60,28 +61,28 @@ if (!$png) {
 
 					$c = $c & 0xFFFFFF;
 
-					// Selective
-					/*$r = ($c >> 16) & 0xFF;
-					$g = ($c >> 8) & 0xFF;
-					$b = ($c) & 0xFF;
+					$idx = -1;
 
-					$red = ($r * 249 + 1014) >> 11;
-					$green = ($g * 249 + 1014) >> 11;
-					$blue = ($b * 249 + 1014) >> 11;
+					if ($partial) {
+						$r = ($c >> 16) & 0xFF;
+						$g = ($c >> 8) & 0xFF;
+						$b = ($c) & 0xFF;
 
-					// Normally R == G == B
-					if ($red == $green || $red == $blue)
-						$idx = $red;
-					if ($green == $blue)
-						$idx = $blue;
+						$red = ($r * 249 + 1014) >> 11;
+						$green = ($g * 249 + 1014) >> 11;
+						$blue = ($b * 249 + 1014) >> 11;
 
-					if (isset($idx)) {*/
-						// Hue All
+						if ($red == $green && $red == $blue)
+							$idx = $red;
+					} else {
 						$idx = ((($c >> 16) & 0xFF) * 249 + 1014) >> 11;
+					}
+
+					if ($idx >= 0) {
 						$color = $colors[$idx];
 						//$col = imagecolorallocate($img, ($color >> 16) & 0xFF, ($color >> 8) & 0xFF, $color & 0xFF);
 						imagesetpixel($img, $i, $j, $color & 0xFFFFFF);
-					/*}*/
+					}
 				}
 			}
 
