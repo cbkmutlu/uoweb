@@ -12,10 +12,13 @@ if (!is_numeric($id) || $id < 0 || $id > 65535)
 $key = "gumpart-$id";
 
 if (array_key_exists('hue', $_REQ)) {
-	$hue = intval($_REQ['hue'], 0);
+	$ihue = intval($_REQ['hue'], 0);
 
-	if (is_numeric($hue) && $hue > 0 && $hue <= 3000) {
-		$key .= "-$hue";
+	$grayonly = ($ihue & 0x8000) != 0;
+	$hue = $ihue & 0x7FFF;
+
+	if ($hue > 0 && $hue <= 3000) {
+		$key .= "-$ihue";
 	} else {
 		unset($hue);
 	}
@@ -60,28 +63,27 @@ if (!$png) {
 
 					$c = $c & 0xFFFFFF;
 
-					// Selective
-					/*$r = ($c >> 16) & 0xFF;
-					$g = ($c >> 8) & 0xFF;
-					$b = ($c) & 0xFF;
+					if ($grayonly) {
+						// Selective
+						$r = ($c >> 16) & 0xFF;
+						$g = ($c >> 8) & 0xFF;
+						$b = ($c) & 0xFF;
 
-					$red = ($r * 249 + 1014) >> 11;
-					$green = ($g * 249 + 1014) >> 11;
-					$blue = ($b * 249 + 1014) >> 11;
+						$red = ($r * 249 + 1014) >> 11;
+						$green = ($g * 249 + 1014) >> 11;
+						$blue = ($b * 249 + 1014) >> 11;
 
-					// Normally R == G == B
-					if ($red == $green || $red == $blue)
-						$idx = $red;
-					if ($green == $blue)
-						$idx = $blue;
-
-					if (isset($idx)) {*/
-						// Hue All
+						if ($red == $green && $red == $blue)
+							$idx = $red;
+					} else {
 						$idx = ((($c >> 16) & 0xFF) * 249 + 1014) >> 11;
+					}
+
+					if (isset($idx)) {
 						$color = $colors[$idx];
 						//$col = imagecolorallocate($img, ($color >> 16) & 0xFF, ($color >> 8) & 0xFF, $color & 0xFF);
 						imagesetpixel($img, $i, $j, $color & 0xFFFFFF);
-					/*}*/
+					}
 				}
 			}
 
