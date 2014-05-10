@@ -43,6 +43,8 @@ if (!$png) {
 			$img = imagecreatefromstring($png);
 			imagesavealpha($img, true);
 			
+			include_once 'inc/hue.php';
+			
 			HueAll($img, $colors);
 
 			ob_start();
