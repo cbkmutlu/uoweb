@@ -6,7 +6,7 @@ if (!array_key_exists('id', $_REQ))
 
 $id = intval($_REQ['id'], 0);
 
-if (!is_numeric($id) || $id < 0)
+if ($id < 0)
 	return;
 
 include_once 'inc/mongo.php';

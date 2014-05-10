@@ -6,7 +6,7 @@ if (!array_key_exists('id', $_REQ))
 
 $id = intval($_REQ['id'], 0);
 
-if (!is_numeric($id) || $id < 0 || $id > 65535)
+if ($id < 0 || $id > 65535)
 	return;
 
 $key = "gumpart-$id";
@@ -24,13 +24,7 @@ if (array_key_exists('hue', $_REQ)) {
 	}
 }
 
-$rhost = parse_url($_ENV['REDISCLOUD_URL'], PHP_URL_HOST);
-$rport = parse_url($_ENV['REDISCLOUD_URL'], PHP_URL_PORT);
-$rpass = parse_url($_ENV['REDISCLOUD_URL'], PHP_URL_PASS);
-
-$rd = new Redis();
-$rd->pconnect($rhost, $rport);
-$rd->auth($rpass);
+include_once 'inc/redis.php';
 
 $png = $rd->get($key);
 
@@ -51,43 +45,13 @@ if (!$png) {
 		if ($colors) {
 			$img = imagecreatefromstring($png);
 			imagesavealpha($img, true);
-			$x = imagesx($img);
-			$y = imagesy($img);
-
-			for($i = 0; $i < $x; $i++) {
-				for($j = 0; $j < $y; $j++) {
-					$c = imagecolorat($img, $i, $j);
-
-					if ($c & 0xFF000000)
-						continue;
-
-					$c = $c & 0xFFFFFF;
-
-					$idx = -1;
-
-					if ($grayonly) {
-						// Selective
-						$r = ($c >> 16) & 0xFF;
-						$g = ($c >> 8) & 0xFF;
-						$b = ($c) & 0xFF;
-
-						$red = ($r * 249 + 1014) >> 11;
-						$green = ($g * 249 + 1014) >> 11;
-						$blue = ($b * 249 + 1014) >> 11;
-
-						if ($red == $green && $red == $blue)
-							$idx = $red;
-					} else {
-						$idx = ((($c >> 16) & 0xFF) * 249 + 1014) >> 11;
-					}
-
-					if ($idx >= 0) {
-						$color = $colors[$idx];
-						//$col = imagecolorallocate($img, ($color >> 16) & 0xFF, ($color >> 8) & 0xFF, $color & 0xFF);
-						imagesetpixel($img, $i, $j, $color & 0xFFFFFF);
-					}
-				}
-			}
+			
+			include_once 'inc/hue.php';
+			
+			if ($grayonly)
+			    HuePartial($img, $colors);
+            else
+                HueAll($img, $colors);
 
 			ob_start();
 			imagepng($img);
