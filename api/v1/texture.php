@@ -9,7 +9,7 @@ $id = intval($_REQ['id'], 0);
 if ($id < 0 || $id > 65535)
 	return;
 
-$key = "gumpart-$id";
+$key = "texture-$id";
 
 if (array_key_exists('hue', $_REQ)) {
 	$ihue = intval($_REQ['hue'], 0);
@@ -31,7 +31,7 @@ $png = $rd->get($key);
 if (!$png) {
 	include_once 'inc/mongo.php';
 
-	$c = $md->gumpart;
+	$c = $md->textures;
 	$data = $c->find(['_id' => $id], ['_id' => false, 'png' => true])->getNext()['png'];
 
 	$png = $data->bin;
